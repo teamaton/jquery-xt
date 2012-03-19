@@ -20,22 +20,31 @@
 			}
 			else {
 				var max = ul1.outerHeight(),
-				minOfMax = max,
-				ctr = 0;
+					minOfMax = max,
+					ctr = 0;
 
 				while (ctr++ < count && max <= minOfMax) {
-					$('body').append('<p>max: ' + max + ' minOfMax: ' + minOfMax + '</p>');
+					// some debugging
+					// $('body').append('<p>max: ' + max + ' minOfMax: ' + minOfMax + '</p>');
+					
+					// move last element from first list to beginning of second list
 					ul2.prepend(ul1.children(':last'));
+					
+					// recalculate
 					max = Math.max(ul1.outerHeight(), ul2.outerHeight());
 					minOfMax = Math.min(minOfMax, max);
+					
+					// if the second list extends beyond the first one, stop
 					if (ul2.outerHeight() > ul1.outerHeight())
 						break;
 				}
+				// if the current height is larger than the minimum possible, revert the last step
 				if (max > minOfMax) {
 					ul1.append(ul1.children(':first'));
 				}
 			}
 
+			// calculate the maximum width for the two lists to appear side-by-side inside the parent element
 			var padding = ul1.outerWidth() - ul1.width(), // with padding and border but w/o margin
 				margins = parseInt(ul1.css('margin-left')) + parseInt(ul1.css('margin-right')),
 				parentWidth = ul1.parent().width(),
@@ -43,5 +52,9 @@
 			ul1.add(ul2).css({ float: 'left', width: targetWidth });
 		});
 	}
-	$.fn.columnizeListsByHeight = function (options) { return $(this).columnizeLists($.extend(options, { useHeights: true })); };
+
+	// funtion shortcut
+	$.fn.columnizeListsByHeight = function (options) {
+		return $(this).columnizeLists($.extend(options, { useHeights: true }));
+	};
 })(jQuery);
