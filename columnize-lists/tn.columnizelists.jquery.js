@@ -40,7 +40,7 @@
 				}
 				// if the current height is larger than the minimum possible, revert the last step
 				if (max > minOfMax) {
-					ul1.append(ul1.children(':first'));
+					ul1.append(ul2.children(':first'));
 				}
 			}
 
