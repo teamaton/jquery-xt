@@ -20,7 +20,7 @@
 				margins = parseInt(ul1.css('margin-left')) + parseInt(ul1.css('margin-right')),
 				parentWidth = ul1.parent().width(),
 				targetWidth = parentWidth / 2 - margins - padding;
-			ul1.add(ul2).css({ float: 'left', width: targetWidth });
+			ul1.add(ul2).css({ 'float': 'left', 'width': targetWidth });
 
 			if (!opts.useHeights) {
 				for (var i = 1; i <= (count / 2); i++) {
